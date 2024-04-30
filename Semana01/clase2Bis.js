@@ -15,27 +15,7 @@
 /* ------------------------------ 👇Comenzamos ------------------------------ */
 // Primero debemos limpiar los scripts anteriores y dejar solo las funciones, quitamos las variables y las empezamos a declarar solo en este script
 
-let marcador  = {
-    usuario: 0,
-    computadora: 0
-}
 
-const nombreDelJugador = iniciarJuego()
-
-// Mientras ninguno de los jugadores haya sumado 2 puntos, seguiremos jugando
-while (marcador.usuario < 2 && marcador.computadora < 2) {
-    const RESULTADO_PARTIDA = compararJugadas()
-    alert(RESULTADO_PARTIDA)
-    console.log(RESULTADO_PARTIDA);
-    
-    if (RESULTADO_PARTIDA.includes("ganaste")) {
-        marcador.usuario++
-    } else if (RESULTADO_PARTIDA.includes("perdiste")) {
-        marcador.computadora++
-    }
-    console.log(marcador);
-    alert(`Resultado de la Ronda: \nScore del Usuario: ${marcador.usuario}\nScore del Computador: ${marcador.computadora}`);
-}
 
 
 
