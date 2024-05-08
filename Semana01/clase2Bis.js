@@ -53,6 +53,8 @@
 // 4- Mostrar finalmente la cantidad de partidas jugadas y que sepa cuantas ganó, perdió o empató durante el juego.
 
 
+// * Créditos: LINA MARCELA VELASQUEZ GARZON
+
 let marcador = {
     usuario: 0,
     computadora: 0,
@@ -86,7 +88,9 @@ while (marcador.usuario < 2 && marcador.computadora < 2) {
 }
 // alert(`Juego terminado. Resultados finales:\nPartidas jugadas: ${marcador.usuario + marcador.computadora + marcador.empates}\nGanaste: ${marcador.usuario} partidas\nPerdiste: ${marcador.computadora} partidas\nEmpataste: ${marcador.empates} partidas`)
 alert(`El juego ha terminado. Aquí está el resumen final:\n
+
 Partidas ganadas por ${nombreJugador}: ${marcador.usuario}
+
 Partidas perdidas por ${nombreJugador}: ${marcador.computadora}
 Empates: ${marcador.empate}
 Total de partidas jugadas: ${marcador.usuario + marcador.computadora -marcador.empate}`)
