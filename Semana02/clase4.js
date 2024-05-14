@@ -47,49 +47,49 @@ const listadoNoticias = [
 // 2- Comentamos la parte de este código de "Practicando atributos"
 // 3- Vamos a crear de a uno e insertarlos en el HTML usando un bucle👇
 
-const main = document.querySelector("main")
-// const main = document.querySelector(".noticias")
-main.innerHTML = "" // con esto lo que quiero hacer es borrar toooodo contenido previo que tenga esa etiqueta
+// const main = document.querySelector("main")
+// // const main = document.querySelector(".noticias")
+// main.innerHTML = "" // con esto lo que quiero hacer es borrar toooodo contenido previo que tenga esa etiqueta
 
-listadoNoticias.forEach( noticia => {
-    // Crear los elementos
-    const article = document.createElement("article")
-    const h2 = document.createElement("h2")
-    const img = document.createElement("img")
-    const p = document.createElement("p")
+// listadoNoticias.forEach( noticia => {
+//     // Crear los elementos
+//     const article = document.createElement("article")
+//     const h2 = document.createElement("h2")
+//     const img = document.createElement("img")
+//     const p = document.createElement("p")
 
-    // console.log(p);
+//     // console.log(p);
 
 
-    // Agregamos contenido a cada una de las etiquetas creadas
-    h2.textContent = noticia.titulo
-    img.setAttribute("src", noticia.foto)
-    img.setAttribute("alt", `miniatura de ${noticia.titulo}`)
-    p.innerText = noticia.epigrafe
-    // p.setAttribute("class", "hola mundo") // esto no se hace, no se agrega clases con el setAttribute, porque borra todo contenido previo, entonces eliminaría las clases
+//     // Agregamos contenido a cada una de las etiquetas creadas
+//     h2.textContent = noticia.titulo
+//     img.setAttribute("src", noticia.foto)
+//     img.setAttribute("alt", `miniatura de ${noticia.titulo}`)
+//     p.innerText = noticia.epigrafe
+//     // p.setAttribute("class", "hola mundo") // esto no se hace, no se agrega clases con el setAttribute, porque borra todo contenido previo, entonces eliminaría las clases
 
-    // Ahora nos toca insertar las etiquetas con su contenido a un elemento contendeor(recuerden que esto no esta en el dom todavía)
-    article.appendChild(h2)
-    article.appendChild(img)
-    article.appendChild(p)
+//     // Ahora nos toca insertar las etiquetas con su contenido a un elemento contendeor(recuerden que esto no esta en el dom todavía)
+//     article.appendChild(h2)
+//     article.appendChild(img)
+//     article.appendChild(p)
 
-    // Ahora debo argregar el article al "abuelo" que vive en el dom, que es donde queremos insertarlo
-    main.appendChild(article)
-})
+//     // Ahora debo argregar el article al "abuelo" que vive en el dom, que es donde queremos insertarlo
+//     main.appendChild(article)
+// })
 
-const ultimoMomento = {
-    titulo: "A nueve años de la muerte de Gustavo Cerati",
-    epigrafe: "actitud rockera, sensibilidad pop y el sonido universal de un artista único/nEl paso del tiempo agiganta la relevancia de la obra del músico argentino./nSu legado ilumina el panorama de la escena actual con indiscutible vigencia.",
-    foto: "https://www.clarin.com/img/2021/03/30/JB6p137T2_360x240__1.jpg"
-}
+// const ultimoMomento = {
+//     titulo: "A nueve años de la muerte de Gustavo Cerati",
+//     epigrafe: "actitud rockera, sensibilidad pop y el sonido universal de un artista único/nEl paso del tiempo agiganta la relevancia de la obra del músico argentino./nSu legado ilumina el panorama de la escena actual con indiscutible vigencia.",
+//     foto: "https://www.clarin.com/img/2021/03/30/JB6p137T2_360x240__1.jpg"
+// }
 
-main.innerHTML += `
-    <article>
-        <h2>${ultimoMomento.titulo}</h2>
-        <img src="${ultimoMomento.foto}" alt="">
-        <p>${ultimoMomento.epigrafe}</p>
-    </article>
-`
+// main.innerHTML += `
+//     <article>
+//         <h2>${ultimoMomento.titulo}</h2>
+//         <img src="${ultimoMomento.foto}" alt="">
+//         <p>${ultimoMomento.epigrafe}</p>
+//     </article>
+// `
 
 
 
@@ -105,8 +105,20 @@ main.innerHTML += `
 // document.querySelector('body').innerHTML += `<h1>Nuevo Título</h1>`;
 
 function renderizandoElementos() {
-// desarrollar la consigna aquí
-
+    // desarrollar la consigna aquí
+    console.log(listadoNoticias);
+    const mainElement = document.querySelector("main")
+    mainElement.innerHTML = ""
+    for (let index = 0; index < listadoNoticias.length; index++) {
+        mainElement.innerHTML += `
+            <article>
+                <h2>${listadoNoticias[index].titulo}</h2>
+                <img src="${listadoNoticias[index].foto}" alt="">
+                <p>${listadoNoticias[index].epigrafe}</p>
+            </article>
+            `
+        
+    }
 
 }
 renderizandoElementos();
