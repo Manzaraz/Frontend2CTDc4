@@ -106,6 +106,7 @@ const listadoNoticias = [
 
 function renderizandoElementos() {
     // desarrollar la consigna aquí
+    // Créditos Mesa 11 - Roberto Vélez & Cia.
     console.log(listadoNoticias);
     const mainElement = document.querySelector("main")
     mainElement.innerHTML = ""
@@ -116,9 +117,7 @@ function renderizandoElementos() {
                 <img src="${listadoNoticias[index].foto}" alt="">
                 <p>${listadoNoticias[index].epigrafe}</p>
             </article>
-            `
-        
+            `        
     }
-
 }
 renderizandoElementos();
