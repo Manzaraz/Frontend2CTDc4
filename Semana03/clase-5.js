@@ -155,6 +155,34 @@ renderizarAlbumes(albumesFamosos);
 // sea necesario ( es decir: 1 album, 1 favorito / 2 albumes, 3 favoritos )
 function mostrarDatosEnPerfil(albumes) {
     // desarrollar la función 👇
-    
+        // <span id="cant-albums">0 álbumes</span> en tu listado - En total <span id="cant-favoritos">0 favoritos</span>
+        const cantidadDeAlbumes = document.querySelector("#cant-albums"),
+        cantidadDeFavoritos = document.getElementById("cant-favoritos")
+
+    let contadorAlbumes = 0,
+        contadorFavoritos = 0;
+
+    albumes.forEach( albumes => {
+        contadorAlbumes++ // Esto es para contar la totalidad de los albumes que tengo disponible
+        
+        // Ahora vamos a buscar y contar las proripedades de album.like == true
+        // if (albumes.like == true) {
+        if (albumes.like) {
+            contadorFavoritos++
+        }
+        // console.log(contadorAlbumes, contadorFavoritos);
+
+        if (contadorAlbumes == 1) {
+            cantidadDeAlbumes.textContent = contadorAlbumes + " álbum"
+        } else {
+            cantidadDeAlbumes.textContent = `${contadorAlbumes} álbumes`
+        }
+
+        if (contadorFavoritos == 1) {
+            cantidadDeFavoritos.textContent = `${contadorFavoritos} álbum`
+        } else {
+            cantidadDeFavoritos.textContent = `${contadorFavoritos} álbumes`
+        }
+    } )
 }
 mostrarDatosEnPerfil(albumesFamosos);
