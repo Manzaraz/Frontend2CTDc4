@@ -89,7 +89,7 @@ function obtenerUsuario() {
 //forEach, template strings, innerHTML
 function renderizarAlbumes(listado) {
     const covers = document.querySelector(".covers")
-    console.log(covers);
+    // console.log(covers);
 
     covers.innerHTML = ""
     
@@ -135,7 +135,7 @@ function renderizarAlbumes(listado) {
         `
     });
 
-
+    // marcarFavorito() // esto podri ponerlo aqui para evitar usar la recursion
 
 }
 
@@ -157,12 +157,14 @@ function mostrarDatosEnPerfil(albumes) {
     // desarrollar la función 👇
         // <span id="cant-albums">0 álbumes</span> en tu listado - En total <span id="cant-favoritos">0 favoritos</span>
     const cantidadDeAlbumes = document.querySelector("#cant-albums"),
-    cantidadDeFavoritos = document.getElementById("cant-favoritos")
+        cantidadDeFavoritos = document.getElementById("cant-favoritos")
 
     let contadorAlbumes = 0,
         contadorFavoritos = 0;
 
     albumes.forEach( albumes => {
+        // contadorAlbumes = contadorAlbumes + 1
+        // contadorAlbumes =+ 1
         contadorAlbumes++ // Esto es para contar la totalidad de los albumes que tengo disponible
         
         // Ahora vamos a buscar y contar las proripedades de album.like == true
@@ -179,10 +181,11 @@ function mostrarDatosEnPerfil(albumes) {
         }
 
         if (contadorFavoritos == 1) {
-            cantidadDeFavoritos.textContent = `${contadorFavoritos} álbum`
+            cantidadDeFavoritos.textContent = `${contadorFavoritos} favorito`
         } else {
-            cantidadDeFavoritos.textContent = `${contadorFavoritos} álbumes`
+            cantidadDeFavoritos.textContent = `${contadorFavoritos} favoritos`
         }
     } )
+
 }
 mostrarDatosEnPerfil(albumesFamosos);
