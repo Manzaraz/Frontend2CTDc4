@@ -156,8 +156,8 @@ renderizarAlbumes(albumesFamosos);
 function mostrarDatosEnPerfil(albumes) {
     // desarrollar la función 👇
         // <span id="cant-albums">0 álbumes</span> en tu listado - En total <span id="cant-favoritos">0 favoritos</span>
-        const cantidadDeAlbumes = document.querySelector("#cant-albums"),
-        cantidadDeFavoritos = document.getElementById("cant-favoritos")
+    const cantidadDeAlbumes = document.querySelector("#cant-albums"),
+    cantidadDeFavoritos = document.getElementById("cant-favoritos")
 
     let contadorAlbumes = 0,
         contadorFavoritos = 0;
