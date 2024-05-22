@@ -63,20 +63,48 @@ marcarFavorito()
 // 4- Si la busqueda nos da un resultado válido, procedemos a borrar el objeto del array
 // 5- Acto seguido debemos llamar a las funciones de renderizar y marcar favorito para que sean nuevamente aplicadas.
 
-// window.addEventListener("keydown" , function (event) { // keydown todas las teclas del teclado
+// window.addEventListener("keypress" , function (event) { // keydown todas las teclas del teclado
 //     console.log(event);
 //     console.log(event.key);
 //     console.log(event.code);
+//     eliminarAlbum(event)
 // })
 
-window.addEventListener("keypress", eliminarAlbum) // keypress solo toma teclas alfanumericas
+window.addEventListener("keydown", eliminarAlbum) // keypress solo toma teclas alfanumericas
 
 
 function eliminarAlbum(event) {
-    console.log(event);
-    console.log(event.key);
-    console.log(event.code);
+    // console.log(event);
+    // console.log(event.key);
+    // console.log(event.code);
+
+    if (event.key == "f" || event.key == "F") {
+    // if (event.code == "KeyF") {
+        console.log("presionaste la tecla f");
+
+        const albumAEliminar = prompt("¿Cuál álbum deseas eliminar?").toLowerCase()
+        console.log(albumAEliminar);
+
+        // buscamos para destruir ese album con .findindex()
+        // const posicionAEliminar = albumesFamosos.findIndex( album => {
+        //     return album.nombre.toLowerCase() == albumAEliminar
+        // })
+        const posicionAEliminar = albumesFamosos.findIndex( album => album.nombre.toLowerCase() == albumAEliminar)
+
+        // console.log("Poscion enocntrada, indice: " + posicionAEliminar);
+        if (posicionAEliminar == -1) {
+            alert(`🚨 El nombre del album '${albumAEliminar.toUpperCase()}' no se encuentra en el playlist`)
+        } else {
+            albumesFamosos.splice(posicionAEliminar, 1)
+        }
+        // console.log(albumesFamosos);
+
+        renderizarAlbumes(albumesFamosos)
+        mostrarDatosEnPerfil(albumesFamosos)
+
+        marcarFavorito(albumesFamosos)
+    }
     
 }
 
-eliminarAlbum()
+// eliminarAlbum()
