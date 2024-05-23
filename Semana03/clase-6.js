@@ -43,6 +43,8 @@ function marcarFavorito() {
 
             // Recursividad: para agreagar nuevamente el listener para seguir ~escuchado el eveto de los botones cada vez que apriete cualquiera de ellos
             marcarFavorito() // es decir que agrego nuevamente los eventos a los botones renderizados en la linea 41
+
+
         })
     })    
 }
@@ -72,39 +74,39 @@ marcarFavorito()
 
 window.addEventListener("keydown", eliminarAlbum) // keypress solo toma teclas alfanumericas
 
-
 function eliminarAlbum(event) {
     // console.log(event);
     // console.log(event.key);
     // console.log(event.code);
-
+    
     if (event.key == "f" || event.key == "F") {
-    // if (event.code == "KeyF") {
+        // if (event.code == "KeyF") {
         console.log("presionaste la tecla f");
-
+        
         const albumAEliminar = prompt("¿Cuál álbum deseas eliminar?").toLowerCase()
         console.log(albumAEliminar);
-
+        
         // buscamos para destruir ese album con .findindex()
         // const posicionAEliminar = albumesFamosos.findIndex( album => {
-        //     return album.nombre.toLowerCase() == albumAEliminar
-        // })
-        const posicionAEliminar = albumesFamosos.findIndex( album => album.nombre.toLowerCase() == albumAEliminar)
-
-        // console.log("Poscion enocntrada, indice: " + posicionAEliminar);
-        if (posicionAEliminar == -1) {
-            alert(`🚨 El nombre del album '${albumAEliminar.toUpperCase()}' no se encuentra en el playlist`)
-        } else {
-            albumesFamosos.splice(posicionAEliminar, 1)
-        }
-        // console.log(albumesFamosos);
-
-        renderizarAlbumes(albumesFamosos)
-        mostrarDatosEnPerfil(albumesFamosos)
-
-        marcarFavorito(albumesFamosos)
+            //     return album.nombre.toLowerCase() == albumAEliminar
+            // })
+            const posicionAEliminar = albumesFamosos.findIndex( album => album.nombre.toLowerCase() == albumAEliminar)
+            
+            // console.log("Poscion enocntrada, indice: " + posicionAEliminar);
+            if (posicionAEliminar == -1) {
+                alert(`🚨 El nombre del album '${albumAEliminar.toUpperCase()}' no se encuentra en el playlist`)
+            } else {
+                albumesFamosos.splice(posicionAEliminar, 1)
+            }
+            // console.log(albumesFamosos);
+            
+            renderizarAlbumes(albumesFamosos)
+            mostrarDatosEnPerfil(albumesFamosos)
+            
+            marcarFavorito(albumesFamosos)
     }
-    
+    window.removeEventListener("click", eliminarAlbum)
+        
 }
 
 // eliminarAlbum()
