@@ -104,8 +104,6 @@ function renderizarErrores(listado) {
     
         form.appendChild(divTemplate)    
     }
-
-
 }
 
 
@@ -159,5 +157,8 @@ function validarInformacion(usuario) {
 // 5 - finalmente pasados 4 segundos: se debe eliminar esa caja, habilitar el boton y limpiar el formulario
 
 function mostrarMensajeExito(listado) {
-
+    setTimeout(() => {
+        console.log("Delayed for 1 second.");
+    }, 4000);
+      
 }
