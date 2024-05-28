@@ -137,7 +137,8 @@ function validarInformacion(usuario) {
     if (usuario.hobbies.length > 4 || usuario.hobbies.length == 0) {
         errores.push("🚨 Sólo es posible seleccionar 4 hobbies.")
     }
-    if (usuario.nacionalidad == "") {
+    // if (usuario.nacionalidad == "") {
+    if (!usuario.nacionalidad) {
         errores.push("🚨 Debe seleccionar una nacionalidad.")
     }
 
@@ -157,6 +158,8 @@ function validarInformacion(usuario) {
 // 5 - finalmente pasados 4 segundos: se debe eliminar esa caja, habilitar el boton y limpiar el formulario
 
 function mostrarMensajeExito(listado) {
+
+
     setTimeout(() => {
         console.log("Delayed for 1 second.");
     }, 4000);
