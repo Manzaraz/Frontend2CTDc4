@@ -159,9 +159,26 @@ function validarInformacion(usuario) {
 
 function mostrarMensajeExito(listado) {
 
+    if (listado.length == 0) {
+        const divTemplate = document.createElement("div")
+        divTemplate.setAttribute("id","exito")
+        divTemplate.style = "background:rgba(0, 255, 0, 0.2);padding: 0.5em 1em; color: green; margin: 0.5em 0"
+    
+        divTemplate.innerHTML += `<p><span>✅¡Formulario completado con éxito!</span></p>`
 
-    setTimeout(() => {
-        console.log("Delayed for 1 second.");
-    }, 4000);
+        const boton = document.querySelector("button")
+        boton.setAttribute("disabled", "")
+        
+        form.appendChild(divTemplate)    
+
+        // const cajaExito = document.querySelector("#exito")
+
+        setTimeout(() => {
+            console.log("Formulario exitoso.");
+            boton.removeAttribute("disabled")
+            form.reset()
+            divTemplate.remove()
+        }, 4000);
+    }
       
 }
