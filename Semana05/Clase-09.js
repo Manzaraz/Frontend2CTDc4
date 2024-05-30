@@ -153,7 +153,9 @@ formulario.addEventListener("submit", (evento) => {
         estadoErroresOK.rol &&
         estadoErroresOK.terminos
     ) {
-        alert("Completaste el la carga del formulario con éxito")
+        // alert("Completaste el la carga del formulario con éxito")
+        console.log("Completaste el la carga del formulario con éxito")
+        navegarPaginaExito()
     }
     
  })
@@ -178,3 +180,4 @@ function navegarPaginaExito() {
 
 
 }
+    
