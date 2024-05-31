@@ -176,8 +176,15 @@ formulario.addEventListener("submit", (evento) => {
 
 function navegarPaginaExito() {
     //  desarrollar la funcion aqui
-    
+    const btn = document.querySelector("button")
+    // btn.setAttribute("disabled","")
+    btn.disabled = true
+    btn.textContent = "Cargando"
 
+
+    setTimeout(() => {
+        location.replace("./usuario.html")
+    }, 3500);
 
 }
     
