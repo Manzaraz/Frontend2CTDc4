@@ -181,6 +181,7 @@ function navegarPaginaExito() {
     btn.disabled = true
     btn.textContent = "Cargando"
 
+    localStorage.setItem('user', JSON.stringify(estadoUsuario)); // esto me pide clase 10
 
     setTimeout(() => {
         location.replace("./usuario.html")
