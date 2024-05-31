@@ -3,7 +3,7 @@ const estadoUsuario = {
     email: "",
     password: "",
     rol: "",
-    terminos: false,
+    terminos: false
 };
 
 // ponemos en true solo cuando estén correctos

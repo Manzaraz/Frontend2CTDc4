@@ -41,7 +41,31 @@ const jsonData = `
 //Recorrer el JSON e insertar en el listado del html los nombres de los miembros
 function recorrerMiembros() {
   //escribe la lógica
-  
+  // console.log(jsonData); // jsData es un string para nuestro JS
+
+  let objetoJs = JSON.parse(jsonData)
+  console.log(objetoJs);
+  console.log(objetoJs.members);
+
+  let heroes = objetoJs.members
+  // console.log(heroes);
+
+  const miembros = document.querySelector("#miembros")
+
+  heroes.forEach(hero => {
+    console.log(hero);
+    console.log(hero.name);
+    console.log(hero.age);
+    console.log(hero.secretIdentity);
+
+    miembros.innerHTML += `
+      <li>
+        <h3>Heroe: ${hero.name}</h3>
+        <h5>Identidad Secreta: ${hero.secretIdentity}</h5>
+        <p>Edad: ${hero.age}</p>
+      </li>
+    `    
+  });
   
 };
 recorrerMiembros();
