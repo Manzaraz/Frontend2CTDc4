@@ -58,6 +58,8 @@ function validarNombre() {
     } else {
       ok = false;
       return nombre.charAt(0).toUpperCase() + nombre.slice(1);
+      // return nombre.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      // .join(" ");
     }
   } while (ok == true);
 }
