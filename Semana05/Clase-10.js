@@ -71,7 +71,7 @@ function renderizarElementos(objetoJS) {
 
 function botonCerrarSesion() {
     //    👇 desarrollar la función
-
+    
 
 
 }
