@@ -75,7 +75,25 @@ let listadoComentarios = [{
 /* -------------------------------------------------------------------------- */
 /*                      [1] FUNCION: Escuchamos el click                      */
 /* -------------------------------------------------------------------------- */
+const btn = document.querySelector("button")
 
+btn.addEventListener("click", () => { 
+    console.log("Boton activado🔘");
+
+    let endpoint = "www.google.com" /// endpoint es la ruta donde iré a bucar el dato
+    // let endpoint = "www.yahoo.com" /// endpoint INCORRECTO es la ruta donde iré a bucar el dato
+
+    consultaAsincrona(endpoint)
+        .then( (respuesta) => {
+            console.log(respuesta);// recibo esa respuesta (objeto)... y ahora puedo operarlo o mostrar en pantalla el dato
+            // if (respuesta.length < 0) {
+            //     reject(respuesta)                
+            // }
+        })
+        .catch( (error) => {
+            console.log(error);
+        })
+ })
 
 
 /* -------------------------------------------------------------------------- */
@@ -84,7 +102,27 @@ let listadoComentarios = [{
 // Creamos una funcion que retorna una promesa despues de 2,5 segundos.
 // La idea es simular la demora de tiempo en responder de un servidor.
 
-
+function consultaAsincrona(url) {
+    // generamos una promesa, para checkear la info en la api, para ello vamos a validar si la url es correcta
+    console.log("DENTRO DE LA PROMESA");
+    return new Promise((resolve, reject) => {
+        // simulamos la espera de la respuesta de la api
+        setTimeout(() => {
+            //checkeamos si la url es correcta
+            if (url == "www.google.com") {
+                // si la url es correcta entonces resuelvo la promesa
+                console.log("resolviendo respuesta")
+                resolve(listadoComentarios)
+            } else {
+                // si la url es incorrecta, rechazamos la promesa
+                reject({
+                    message: "Consulta rechazada.",
+                    status: 401
+                })
+            }
+        }, 3000);
+    })
+}
 
 
 

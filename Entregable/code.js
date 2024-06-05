@@ -57,9 +57,9 @@ function validarNombre() {
       ok = true;
     } else {
       ok = false;
-      return nombre.charAt(0).toUpperCase() + nombre.slice(1);
-      // return nombre.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      // .join(" ");
+      // return nombre.charAt(0).toUpperCase() + nombre.slice(1);
+      return nombre.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
     }
   } while (ok == true);
 }
@@ -75,6 +75,7 @@ function renderizarDatosUsuario() {
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
   const container = document.getElementById("fila");
+
   listado.forEach((materia) => {
     const caja = document.createElement("div");
     caja.classList = "caja";
