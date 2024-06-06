@@ -89,6 +89,7 @@ btn.addEventListener("click", () => {
             // if (respuesta.length < 0) {
             //     reject(respuesta)                
             // }
+            renderizarElementos(respuesta)
         })
         .catch( (error) => {
             console.log(error);
@@ -141,5 +142,31 @@ function consultaAsincrona(url) {
 // Muchos éxitos!
 
 function renderizarElementos(listado){
-
+    const comentarios = document.querySelector(".comentarios");
+    comentarios.innerHTML = "";
+    // desarrollar la funcion 👇
+    const comentariosRenderizados = listado.map((comentario) => {
+        return `<div class="comentario">
+            <h4>${comentario.email}</h4>
+            <p>${comentario.body}</p>
+        </div>`
+    })
+    console.log(comentariosRenderizados);
+    // comentarios.innerHTML = comentariosRenderizados
+    comentarios.innerHTML = comentariosRenderizados.join("")
 }
+
+// let numberArray = [1, 2, 3, 4, 5];
+
+
+// /*El método forEach te permite ejecutar una función iterando a través de cada elemento de una matriz. Es importante tener en cuenta que el método forEach no devuelve nada y, por lo tanto, si intentas obtener el valor de devolución del método forEach, obtendrás el valor "undefined". En cambio, te permite modificar los valores de una matriz existente aplicando la función de devolución de llamada en cada elemento de una matriz. Dado que te permite modificar la matriz de origen en sí, es un método de mutación.*/
+// // let returnValue = numberArray.forEach( numero => numero * numero)
+
+// // console.log(numberArray)
+// // console.log(returnValue)
+
+
+// let returnValue = numberArray.map( numero => numero * numero)
+
+// console.log(numberArray)
+// console.log(returnValue)
