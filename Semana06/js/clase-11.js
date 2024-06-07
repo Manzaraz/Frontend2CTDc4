@@ -165,6 +165,10 @@ function renderizarElementos(listado){
 // // console.log(numberArray)
 // // console.log(returnValue)
 
+// map: crea un nuevo array iterando uno ya existente
+/// No se debe usar:
+/// a) no hace falta crear un nuevo array
+/// b) el callback no retorna nada
 
 // let returnValue = numberArray.map( numero => numero * numero)
 
