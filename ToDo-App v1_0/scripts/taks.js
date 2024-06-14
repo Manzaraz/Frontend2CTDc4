@@ -233,15 +233,8 @@ window.addEventListener('load', function () {
           //   consultarTareas()
           // })
           // .catch(err => console.log(err))
-
-
        })
     })
-    
-    
-
-
-
   }
 
 
