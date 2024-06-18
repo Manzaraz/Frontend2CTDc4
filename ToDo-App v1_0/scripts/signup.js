@@ -16,10 +16,10 @@ window.addEventListener("load", function () {
       event.preventDefault();
 
       // Validación de contraseñas
-      // if (password.value !== passwordRepetida.value) {
-      //   alert("Las contraseñas no coinciden. Por favor, vuelva a ingresarlas.");
-      //   return;
-      // }
+      if (password.value !== passwordRepetida.value) {
+        alert("Las contraseñas no coinciden. Por favor, vuelva a ingresarlas.");
+        return;
+      }
 
       const payload = {
         firstName: nombre.value,

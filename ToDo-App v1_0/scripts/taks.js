@@ -242,11 +242,33 @@ window.addEventListener('load', function () {
   /*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
   /* -------------------------------------------------------------------------- */
   function botonBorrarTarea() {
-   
+    //obtenemos los botones de borrado
+    const btnsBorrar = document.querySelectorAll('.borrar');
     
+    btnsBorrar.forEach(boton => {
+      //a cada boton de borrado le asignamos la funcionalidad
+      boton.addEventListener("click", (e) =>{
+        const id = e.target.id;
+        const urlDelete = urlTareas + `/${id}`      
+        
+        const settings = {
+          method: "DELETE",
+          headers: {
+            authorization: token,
+            "Content-Type" : "application/json"
+          }
+        }
 
-    
-
+        fetch(urlDelete,settings)
+        .then(response => {
+            console.log("Borrando tarea...");
+            console.log(response.status) // Como el status del objeto Response es 200, esto significa que ya se ha eliminado la tarea, por ende... no hace falta que haga otra acción con el objeto response
+            
+            // entonces sólo me queda llamar al método consultarTareas(), para que ésta me las actualice (haciendo un nuevo fetch) y las pinte nuevamente en pantalla.
+            consultarTareas();
+          })
+          .catch(err => console.log("Error: " + err)) // si hay un error identifico el problema.
+      })
+   })
   };
-
 });

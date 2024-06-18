@@ -12,8 +12,7 @@ Este proyecto es la oportunidad de repasar todo lo aprendido y poner en práctic
 
 ## API Docs
 Link con la documentación de los endpoints de la API y su funcionamiento:
-Enlace a la Documentación: 👉 https://todo-api.digitalhouse.com
-Endpoint de la API: 👉 https://todo-api.digitalhouse.com/v1
+👉 https://todo-api.digitalhouse.com/v1
     
 
 ## Requerimientos funcionales en pantalla de Login
