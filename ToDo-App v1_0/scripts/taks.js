@@ -241,14 +241,15 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
   /*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
   /* -------------------------------------------------------------------------- */
+  // Créditos Lina Marcela Vazquez Garzón 🥇
   function botonBorrarTarea() {
     //obtenemos los botones de borrado
-    const btnsBorrar = document.querySelectorAll('.borrar');
+    const btnsEliminar = document.querySelectorAll('.borrar');
     
-    btnsBorrar.forEach(boton => {
+    btnsEliminar.forEach(boton => {
       //a cada boton de borrado le asignamos la funcionalidad
       boton.addEventListener("click", (e) =>{
-        const id = e.target.id;
+        const id = e.target.id; // detectamos el id del botón .borrar  para armar una url con el id como parámetro
         const urlDelete = urlTareas + `/${id}`      
         
         const settings = {
@@ -262,12 +263,13 @@ window.addEventListener('load', function () {
         fetch(urlDelete,settings)
         .then(response => {
             console.log("Borrando tarea...");
-            console.log(response.status) // Como el status del objeto Response es 200, esto significa que ya se ha eliminado la tarea, por ende... no hace falta que haga otra acción con el objeto response
-            
-            // entonces sólo me queda llamar al método consultarTareas(), para que ésta me las actualice (haciendo un nuevo fetch) y las pinte nuevamente en pantalla.
-            consultarTareas();
+            if (response.ok) { // Como la prop .ok del objeto Response es true, esto significa que ya se ha eliminado la tarea, por ende... no hace falta que haga otra acción con el objeto response
+              // entonces sólo me queda llamar al método consultarTareas(), para que ésta me las actualice (haciendo un nuevo fetch) y las pinte nuevamente en pantalla.
+              consultarTareas();
+              console.log("Tarea eliminada");
+            }             
           })
-          .catch(err => console.log("Error: " + err)) // si hay un error identifico el problema.
+          .catch(err => console.log(err)) // si hay un error identifico el problema.
       })
    })
   };
