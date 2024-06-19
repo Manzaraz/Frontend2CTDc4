@@ -241,7 +241,7 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
   /*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
   /* -------------------------------------------------------------------------- */
-  // Créditos Lina Marcela Vazquez Garzón 🥇
+  // Créditos Lina Marcela Vazquez Garzón y Roberto Velez  🥇
   function botonBorrarTarea() {
     //obtenemos los botones de borrado
     const btnsEliminar = document.querySelectorAll('.borrar');

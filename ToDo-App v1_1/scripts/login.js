@@ -6,6 +6,21 @@ window.addEventListener('load', function () {
     const password = document.querySelector("#inputPassword")
     const url = "https://todo-api.digitalhouse.com/v1"
 
+    // el evento blur desencadenar el evento una vez que abandono el input, por eso si está vacio, le indico que lo obligue a cargarlo
+    email.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${email.name}`, e))
+    password.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${password.name}`, e))
+
+    // Cuando modifico el contenido del input se desencadena el evento el cual lo capturará la función que se encarga de validar
+    email.addEventListener("input", e => validarEmail(e))
+    password.addEventListener("input", validarContrasenia)
+
+
+
+
+
+
+
+
     /* -------------------------------------------------------------------------- */
     /*            FUNCIÓN 1: Escuchamos el submit y preparamos el envío           */
     /* -------------------------------------------------------------------------- */
