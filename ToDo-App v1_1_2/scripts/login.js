@@ -6,19 +6,18 @@ window.addEventListener('load', function () {
     const password = document.querySelector("#inputPassword")
     const url = "https://todo-api.digitalhouse.com/v1"
 
-    // el evento blur desencadenar el evento una vez que abandono el input, por eso si está vacio, le indico que lo obligue a cargarlo
-    email.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${email.name}`, e))
-    password.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${password.name}`, e))
-
+    const btn = document.querySelector('button');
+    const btnImg = document.querySelector('button img');
+    const btnTexto = document.querySelector('button span');
+    
+    // Aqui en este punto yo me encargo de mandar un a llamar la las funcion normalizar Texto y las validaciones
     // Cuando modifico el contenido del input se desencadena el evento el cual lo capturará la función que se encarga de validar
     email.addEventListener("input", e => validarEmail(e))
     password.addEventListener("input", validarContrasenia)
 
-
-
-
-
-
+    // el evento blur desencadenar el evento una vez que abandono el input, por eso si está vacio, le indico que lo obligue a cargarlo
+    email.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${email.name}`, e))
+    password.addEventListener("blur", e => isEmpty(`⚠️ Se requiere que ingrese su ${password.name}`, e))
 
 
     /* -------------------------------------------------------------------------- */
@@ -32,7 +31,7 @@ window.addEventListener('load', function () {
             email: email.value,
             password: password.value,
         }
-        // console.log(payload);
+        ////  console.log(payload);
 
         // Configuramos la request (consulta) a la API
         const settings = {
@@ -43,7 +42,10 @@ window.addEventListener('load', function () {
            }
         }
  
-        realizarLogin(settings)
+        if (email.value.length > 0 && password.value.length > 0) {
+            console.log("Todo está bine, poasamos a hacer la request");
+            realizarLogin(settings)
+        }
     });
 
 
@@ -51,12 +53,16 @@ window.addEventListener('load', function () {
     /*                     FUNCIÓN 2: Realizar el login [POST]                    */
     /* -------------------------------------------------------------------------- */
     function realizarLogin(settings) {
-    //    console.log(settings);
-       console.log("🏄🏻‍♂️Lanzando la consulta a la API....");
+        //  console.log(settings);
+        //  console.log("🏄🏻‍♂️Lanzando la consulta a la API....");
+        
+        //invertimos las clases para hacer el cambio del loading y deshabilitamos el botón para evitar que el usuario haga más de un click
+        invertirClases()
+        btn.setAttribute("disabled","")
 
         fetch(`${url}/users/login`, settings)
             .then( response => {
-                // console.log(response);
+                ////  console.log(response);
 
                 // manejar el error de la request, si todo va bien, esta respuesta la capturaremos en el siguiente .then
                 if (response.ok) return response.json(response)
@@ -65,22 +71,32 @@ window.addEventListener('load', function () {
                 return Promise.reject(response)
             })
             .then( data => {
-                console.log(data);
-                console.log(data.jwt);
+               //  console.log(data);
+               //  console.log(data.jwt);
 
+                    
                 if (data.jwt) {
+                    //* para animar el loader en el boton
+                    setTimeout(() => {
+                        invertirClases()
+                        btn.removeAttribute("disabled")
+                    }, 3000);
+                    
                     // guardar el dato de JWT en el local storfage (ese token), para hacer el login
                     localStorage.setItem("jwt", JSON.stringify(data.jwt))
-
+                    
                     form.reset() // para limpiar los campos de los inputs del formulario
-
+                    
                     location.replace("./mis-tareas.html") // redireccionamos a nuestro dashboard de todo
                 }
-
+                
             })
             .catch( err => {
-                // console.log(err);
-                // console.log(err.status);
+                // en caso de que tengamos un mensaje de error, volvemos a habilitar el boton
+                invertirClases()
+                btn.removeAttribute("disabled")
+                ////  console.log(err);
+                ////  console.log(err.status);
 
                 // 400 Contraseña incorrecta
                 // 404	El usuario no existe
@@ -97,6 +113,11 @@ window.addEventListener('load', function () {
                 }
             })        
     };
+
+    function invertirClases() {
+        btnImg.classList.toggle("oculto")
+        btnTexto.classList.toggle("oculto")
+    }
 });
 
 // {

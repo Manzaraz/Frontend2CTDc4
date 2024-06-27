@@ -13,6 +13,10 @@
   <!-- ---------------- estilos compartidos de login y signup ---------------- -->
   <link rel="stylesheet" href="./css/loginSignupStyles.css">
 
+  <!-- PWA: Vinculacion con el manifiesto json -->
+
+
+
 
   <!-- ---------------------- logica aplicada en login ----------------------- -->
   <script src="./scripts/utils.js"></script>
@@ -40,15 +44,19 @@
         Email
         <input id="inputEmail" type="text" name="correo electrónico">
       </label> -->
-      <label for="inputEmail">Email</label>
+      <label for="inputEmail" >Email</label>
       <input id="inputEmail" type="text" name="correo electrónico">
       <span></span>
       
-      <label for="inputPassword">Contraseña</label>
+      <label for="inputPassword" >Contraseña</label>
       <input id="inputPassword" type="password" name="contraseña">
       <span></span>
       
-      <button type="submit">Ingresar</button>
+      <button type="submit">
+        <img class="oculto" src="assets/loader.gif" alt="">
+        <span>Ingresar</span>
+      </button>
+
 
     </form>
 
@@ -57,7 +65,7 @@
     </div>
 
   </div>
-
+ 
 </body>
 
 </html>

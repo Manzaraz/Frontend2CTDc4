@@ -8,6 +8,8 @@ if (!localStorage.jwt){
 
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener('load', function () {
+  AOS.init(); // inicializo la libreria  AOS
+
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const btnCerrarSesion = document.querySelector("#closeApp")
   const formCrearTarea = document.querySelector(".nueva-tarea")
@@ -30,13 +32,39 @@ window.addEventListener('load', function () {
 
   btnCerrarSesion.addEventListener('click', function () {
     // console.log("Quiere cerrar sesión");
-    const cerrarSesion = confirm("¿Estás seguro de que deseas cerrar sesión?")
+    // const cerrarSesion = confirm("¿Estás seguro de que deseas cerrar sesión?")
   
-    if (cerrarSesion) {
-     // limpie el local storage y luego me redirija al home
-     localStorage.clear()
-     location.replace("./index.html")
-    }
+    // if (cerrarSesion) {
+    //  // limpie el local storage y luego me redirija al home
+    //  localStorage.clear()
+    //  location.replace("./index.html")
+    // }
+
+    Swal.fire({
+      title: "¿Deseas Cerrar Sesión?",
+      text: "¿Estás seguro de que deseas cerrar sesión?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¡Sí, Confirmo!",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "¡Hasta luego!",
+          text: "Te esperamos pronto.",
+          icon: "success"
+        });
+       
+        setTimeout(() => {
+          // limpie el local storage y luego me redirija al home
+          localStorage.clear()
+          location.replace("./index.html")
+        }, 2000);
+              
+      }
+    });
   });
 
   /* -------------------------------------------------------------------------- */
@@ -157,7 +185,8 @@ window.addEventListener('load', function () {
 
         //imprimir las tareas completadas
         tareasTerminadas.innerHTML += `
-          <li class="tarea" data-id="${tarea.id}">
+          <li class="tarea" data-id="${tarea.id}" data-aos="fade-up"
+          data-aos-anchor-placement="center-bottom">
             <div class="hecha">
               <i class="fa-regular fa-circle-check"></i>
             </div>
@@ -173,7 +202,7 @@ window.addEventListener('load', function () {
       } else {
         // ahora me queda imprimir las tareasd pendientes
         tareasPendientes.innerHTML += `
-          <li class="tarea" data-id="${tarea.id}">
+          <li class="tarea" data-id="${tarea.id}" data-aos="flip-up" data-aos-duration="750">
             <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
             <div class="descripcion">
               <p class="nombre">${tarea.description}</p>
@@ -241,15 +270,14 @@ window.addEventListener('load', function () {
   /* -------------------------------------------------------------------------- */
   /*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
   /* -------------------------------------------------------------------------- */
-  // Créditos Lina Marcela Vazquez Garzón y Roberto Velez  🥇
   function botonBorrarTarea() {
     //obtenemos los botones de borrado
-    const btnsEliminar = document.querySelectorAll('.borrar');
+    const btnsBorrar = document.querySelectorAll('.borrar');
     
-    btnsEliminar.forEach(boton => {
+    btnsBorrar.forEach(boton => {
       //a cada boton de borrado le asignamos la funcionalidad
       boton.addEventListener("click", (e) =>{
-        const id = e.target.id; // detectamos el id del botón .borrar  para armar una url con el id como parámetro
+        const id = e.target.id;
         const urlDelete = urlTareas + `/${id}`      
         
         const settings = {
@@ -260,16 +288,15 @@ window.addEventListener('load', function () {
           }
         }
 
-        fetch(urlDelete,settings)
+        fetch(urlDelete, settings)
         .then(response => {
             console.log("Borrando tarea...");
-            if (response.ok) { // Como la prop .ok del objeto Response es true, esto significa que ya se ha eliminado la tarea, por ende... no hace falta que haga otra acción con el objeto response
-              // entonces sólo me queda llamar al método consultarTareas(), para que ésta me las actualice (haciendo un nuevo fetch) y las pinte nuevamente en pantalla.
-              consultarTareas();
-              console.log("Tarea eliminada");
-            }             
+            console.log(response.status) // Como el status del objeto Response es 200, esto significa que ya se ha eliminado la tarea, por ende... no hace falta que haga otra acción con el objeto response
+            
+            // entonces sólo me queda llamar al método consultarTareas(), para que ésta me las actualice (haciendo un nuevo fetch) y las pinte nuevamente en pantalla.
+            consultarTareas();
           })
-          .catch(err => console.log(err)) // si hay un error identifico el problema.
+          .catch(err => console.log("Error: " + err)) // si hay un error identifico el problema.
       })
    })
   };
