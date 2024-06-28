@@ -32,39 +32,15 @@ window.addEventListener('load', function () {
 
   btnCerrarSesion.addEventListener('click', function () {
     // console.log("Quiere cerrar sesión");
-    // const cerrarSesion = confirm("¿Estás seguro de que deseas cerrar sesión?")
+    const cerrarSesion = confirm("¿Estás seguro de que deseas cerrar sesión?")
   
-    // if (cerrarSesion) {
-    //  // limpie el local storage y luego me redirija al home
-    //  localStorage.clear()
-    //  location.replace("./index.html")
-    // }
+    if (cerrarSesion) {
+     // limpie el local storage y luego me redirija al home
+     localStorage.clear()
+     location.replace("./index.html")
+    }
 
-    Swal.fire({
-      title: "¿Deseas Cerrar Sesión?",
-      text: "¿Estás seguro de que deseas cerrar sesión?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "¡Sí, Confirmo!",
-      cancelButtonText: "Cancelar"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "¡Hasta luego!",
-          text: "Te esperamos pronto.",
-          icon: "success"
-        });
-       
-        setTimeout(() => {
-          // limpie el local storage y luego me redirija al home
-          localStorage.clear()
-          location.replace("./index.html")
-        }, 2000);
-              
-      }
-    });
+    
   });
 
   /* -------------------------------------------------------------------------- */
