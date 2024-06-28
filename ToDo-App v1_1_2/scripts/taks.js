@@ -8,7 +8,8 @@ if (!localStorage.jwt){
 
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener('load', function () {
-
+  // inicializo la librería AOS
+  AOS.init(); 
 
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const btnCerrarSesion = document.querySelector("#closeApp")
@@ -32,15 +33,38 @@ window.addEventListener('load', function () {
 
   btnCerrarSesion.addEventListener('click', function () {
     // console.log("Quiere cerrar sesión");
-    const cerrarSesion = confirm("¿Estás seguro de que deseas cerrar sesión?")
+    // const cerrarSesion = confirm("¿Estás seguro de que deseas cerrar sesión?")
   
-    if (cerrarSesion) {
-     // limpie el local storage y luego me redirija al home
-     localStorage.clear()
-     location.replace("./index.html")
-    }
+    // if (cerrarSesion) {
+    //  // limpie el local storage y luego me redirija al home
+    //  localStorage.clear()
+    //  location.replace("./index.html")
+    // }
 
-    
+    // Implementacion de Sweet Alert 
+    Swal.fire({
+      title: "¿Cerrar Sesio2n?",
+      text: "¿Estás seguro de que deseas cerrar sesión?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¡Sí, confirmo!",
+      cancelButtonText: "¡NO! Quiero quedarme"
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "¡Hasta luego!",
+            text: "👋🏼 Nos vemos pronto.",
+            icon: "success"
+          });
+          setTimeout(() => {
+            localStorage.clear()
+            location.replace("./index.html")            
+          }, 2000);
+        }
+      })    
   });
 
   /* -------------------------------------------------------------------------- */
@@ -161,8 +185,7 @@ window.addEventListener('load', function () {
 
         //imprimir las tareas completadas
         tareasTerminadas.innerHTML += `
-          <li class="tarea" data-id="${tarea.id}" data-aos="fade-up"
-          data-aos-anchor-placement="center-bottom">
+          <li class="tarea" data-id="${tarea.id}" data-aos="zoom-out-left" data-aos-duration="450" data-aos-easing="ease-in-sine">
             <div class="hecha">
               <i class="fa-regular fa-circle-check"></i>
             </div>
@@ -178,7 +201,7 @@ window.addEventListener('load', function () {
       } else {
         // ahora me queda imprimir las tareasd pendientes
         tareasPendientes.innerHTML += `
-          <li class="tarea" data-id="${tarea.id}" data-aos="flip-up" data-aos-duration="750">
+          <li class="tarea" data-id="${tarea.id}" data-aos="flip-up" >
             <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
             <div class="descripcion">
               <p class="nombre">${tarea.description}</p>

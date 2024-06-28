@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./css/loginSignupStyles.css">
 
   <!-- PWA: Vinculacion con el manifiesto json -->
-
+  <link rel="manifest" href="manifest.json" />
 
 
 
@@ -65,7 +65,16 @@
     </div>
 
   </div>
- 
-</body>
 
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker
+          .register("/serviceWorker.js")
+          .then(res => console.log("service worker registered"))
+          .catch(err => console.log("service worker not registered", err))
+      })
+    }
+  </script> 
+</body>
 </html>
