@@ -8,7 +8,7 @@ if (!localStorage.jwt){
 
 /* ------ comienzan las funcionalidades una vez que carga el documento ------ */
 window.addEventListener('load', function () {
-  AOS.init(); // inicializo la libreria  AOS
+
 
   /* ---------------- variables globales y llamado a funciones ---------------- */
   const btnCerrarSesion = document.querySelector("#closeApp")
